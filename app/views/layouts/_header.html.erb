@@ -1,0 +1,17 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12 d-flex p-3 border-bottom mb-4">
+      <p class="flex-grow-1 h3">
+        <%= link_to "Reddit Clone", root_path, class: "text-decoration-none" %>
+      </p>
+      <div class="buttons">
+        <% if account_signed_in? %>
+          <%= link_to "Sign Out", destroy_account_session_path, method: :delete, class: "btn btn-outline-primary" %>
+        <% else %>
+          <%= link_to "Log In", new_account_session_path, class: "btn btn-outline-primary" %>
+          <%= link_to "Sign Up", new_account_registration_path, class: "btn btn-outline-primary" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
