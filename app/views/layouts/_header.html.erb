@@ -1,12 +1,26 @@
-<div class="container-fluid">
+<div class="container">
   <div class="row">
-    <div class="col-12 d-flex p-3 border-bottom mb-4">
+    <div class="col-12 d-flex align-items-center border-bottom py-3">
       <p class="flex-grow-1 h3">
         <%= link_to "Reddit Clone", root_path, class: "text-decoration-none" %>
       </p>
-      <div class="buttons">
+      <div class="d-flex flex-row align-items-center">
         <% if account_signed_in? %>
-          <%= link_to "Sign Out", destroy_account_session_path, method: :delete, class: "btn btn-outline-primary" %>
+          <div class="karma me-2">
+            <%= current_account.karma %>
+            <span class="fa fa-star text-warning"></span>
+          </div>
+          <div class="dropdown show">
+            <a class="btn btn-white dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown">
+              <%= current_account.full_name %>
+            </a>
+
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+              <%= link_to "Profile", profile_path(current_account.username), class: "dropdown-item" %>
+              <%= link_to "Settings", edit_account_registration_path, class: "dropdown-item" %>
+              <%= link_to "Sign Out", destroy_account_session_path, method: :delete, class: "dropdown-item" %>
+            </div>
+          </div>
         <% else %>
           <%= link_to "Log In", new_account_session_path, class: "btn btn-outline-primary" %>
           <%= link_to "Sign Up", new_account_registration_path, class: "btn btn-outline-primary" %>

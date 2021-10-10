@@ -1,11 +1,33 @@
-<%= link_to "Create New Post", new_community_post_path(@community), class: "btn btn-primary float-end" %>
-<p class="fw-bold">#<%= @community.name %></p>
+<script type="text/javascript" charset="utf-8">
+  document.title = "r/<%= @community.name %> | Reddit Clone"
+</script>
 
-<% @posts.each do |post| %>
-  <h4><%= link_to post.title, community_post_path(@community, post) %></h4>
-  <p><%= truncate post.body, length: 200 %></p>
-<% end %>
+<div class="row">
+  <div class="col-sm-8">
+    <h3 class="fw-bold mb-4">r/<%= @community.name %></h3>
+  </div>
+  <div class="col-sm-4 text-end">
+    <% if @is_subscribed %>
+      <%= link_to "Create New Post", new_community_post_path(@community), class: "btn btn-primary" %>
+    <% else %>
+      <%= render partial: "communities/subscribe", locals: { community_id: @community.id } %>
+    <% end %>
+  </div>
+</div>
 
-<small>
-  <%= simple_format @community.rules %>
-</small>
+<div class="row">
+  <div class="col-sm-8">
+    <%= render partial: "posts/list", locals: { posts: @posts } %>
+  </div>
+  <div class="col-sm-4">
+    <div class="card p-3">
+      <h4>About this community</h4>
+      <p class="mt-2 mb-3"><%= @community.summary %></p>
+      <p><%= pluralize @subscriber_count, "member" %></p>
+      <small>
+        <%= simple_format @community.rules %>
+      </small>
+    </div>
+  </div>
+</div>
+

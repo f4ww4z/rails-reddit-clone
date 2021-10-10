@@ -1,0 +1,9 @@
+<div class="d-flex flex-column align-items-center pt-1 vote"
+     id="vote-actions-<%= post.id %>"
+     data-id="<%= post.id %>">
+  <span id="upvote-<%= post.id %>"
+        class="fa fa-arrow-up upvote <%= is_upvoted(post) ? 'active' : '' %>"></span>
+  <span class="my-1 vote-score"><%= post.score %></span>
+  <span id="downvote-<%= post.id %>"
+        class="fa fa-arrow-down downvote <%= is_downvoted(post) ? 'active' : '' %>"></span>
+</div>

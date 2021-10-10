@@ -1,0 +1,16 @@
+$color-base: #262626;
+$color-vote: #da5400;
+
+.upvote, .downvote {
+  cursor: pointer;
+  color: $color-base;
+
+  &.active {
+    color: $color-vote;
+  }
+}
+
+.upvote:hover, .downvote:hover {
+  cursor: pointer;
+  color: $color-vote;
+}

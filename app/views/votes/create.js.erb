@@ -1,0 +1,16 @@
+// update total votes on view for post
+$("#vote-actions-<%= @post.id %> .vote-score").text("<%= @post.score %>")
+
+// update color of vote buttons
+<% if account_signed_in? %>
+  <% if is_upvoted @post %>
+    $("#upvote-<%= @post.id %>").addClass("active")
+    $("#downvote-<%= @post.id %>").removeClass("active")
+  <% elsif is_downvoted @post %>
+    $("#upvote-<%= @post.id %>").removeClass("active")
+    $("#downvote-<%= @post.id %>").addClass("active")
+  <% else %>
+    $("#upvote-<%= @post.id %>").removeClass("active")
+    $("#downvote-<%= @post.id %>").removeClass("active")
+  <% end %>
+<% end %>

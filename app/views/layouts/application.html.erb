@@ -13,13 +13,30 @@
 <body>
 <%= render partial: "layouts/header" %>
 
-<div class="container">
-  <div class="row">
-    <div class="col-sm-12">
-      <%= yield %>
+<% flash.each do |key, value| %>
+  <div class="alert <%= key == 'alert' ? 'alert-danger' : 'alert-info' %> alert-dismissible fade show" role="alert">
+    <%= value %>
+    <button
+      type="button"
+      class="float-right btn-close"
+      data-dismiss="alert"
+      aria-label="Close"
+      onclick="$('.alert').alert('close')"
+    >
+    </button>
+  </div>
+<% end %>
+
+
+<section class="bg-light">
+  <div class="container py-4">
+    <div class="row">
+      <div class="col-sm-12">
+        <%= yield %>
+      </div>
     </div>
   </div>
-</div>
+</section>
 
 <%= render partial: "layouts/footer" %>
 </body>
